@@ -1,0 +1,49 @@
+{
+  "name": "executive-cardboard",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack -p",
+    "dev": "webpack-dev-server --hot --watch-poll --port 5050 --mode=development",
+    "prod": "webpack-dev-server --host 0.0.0.0 --port 5050 --mode=production"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/d3": "^5.0.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "bootstrap": "^4.1.3",
+    "cross-fetch": "^2.2.2",
+    "css-loader": "^1.0.0",
+    "d3": "^5.7.0",
+    "react": "^16.5.0",
+    "react-d3": "^0.4.0",
+    "react-d3-graph": "^2.0.0-rc0",
+    "react-dom": "^16.5.0",
+    "react-easy-chart": "^1.0.0",
+    "react-redux": "^5.0.7",
+    "react-svg": "^6.0.18",
+    "reactstrap": "^6.4.0",
+    "redux-thunk": "^2.3.0",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.17.1",
+    "webpack-dev-server": "^3.1.7",
+    "whatwg-fetch": "^3.0.0"
+  },
+  "devDependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-root-slash-import": "^1.1.0",
+    "file-loader": "^2.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "node-sass": "^4.9.3",
+    "redux": "^4.0.0",
+    "sass-loader": "^7.1.0",
+    "url-loader": "^1.1.1",
+    "webpack-cli": "^3.1.0"
+  }
+}

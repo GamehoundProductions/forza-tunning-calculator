@@ -1,0 +1,6 @@
+{
+    "graph": {
+        "url": "http://localhost:1991/system",
+        "updateRate": "5000"
+    }
+}

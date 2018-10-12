@@ -1,0 +1,6 @@
+*.log
+*.*.log
+*.swp
+*.tar
+*.*.tar
+node_modules

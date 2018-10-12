@@ -1,0 +1,86 @@
+/*
+HPE Green: RGB 1,169,130
+HPE Slate: RGB 66,85,99
+HPE Dark Steel: RGB 95,122,118
+HPE Bronze: RGB 128,116,110
+HPE Gray: RGB 198,201,202
+HPE Turquoise: RGB 42,210,201
+HPE Orange: RGB 255,141,109
+HPE Purple: RGB 97,71,103
+*/
+
+$color-green: rgb(1, 169, 130);
+$color-slate: rgb(66, 85, 99);
+$color-dark-steel: rgb(95, 122, 118);
+$color-bronze: rgb(128, 116, 110);
+$color-gray:rgb(198, 201, 202);
+$color-turquoise:rgb(42, 210, 201);
+$color-orange:rgb(255, 141, 109);
+$color-purple:rgb(97, 71, 103);
+
+
+body {
+    background: $color-slate;
+}
+
+nav.bg-orange {
+    background: $color-dark-steel;
+    border-radius: 0px;
+}
+
+a.navbar-brand {
+    color: $color-orange !important;
+}
+
+.noborder {
+    border-radius: 0px !important;
+}
+
+.dsc {
+    color: white;
+}
+
+.tunning-entry {
+    width: 80%;
+    font-size: 18px;
+    text-align: right;
+}
+
+.divider {
+    background-color: black;
+    display: block;
+    margin-top: 55px;
+    margin-bottom: 25px;
+    border-style: inset;
+    border-width: 1px;
+}
+
+input {
+    color: $color-orange;
+    text-align: center;
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 2px solid black;
+}
+
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+    color: $color-turquoise;
+}
+
+h1 {
+    font-size: 30px;
+    font-weight: bold;
+    color: white;
+}
+
+h2 {
+    font-size: 15px;
+    color: $color-gray
+}
+
+h3 {
+    font-size: 12px;
+    color: $color-gray
+}

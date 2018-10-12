@@ -1,0 +1,10 @@
+{
+  "plugins": [
+    "transform-object-rest-spread",
+
+    //Absolute path impoerts: https://github.com/mantrajs/babel-root-slash-import
+    ["babel-root-slash-import", {
+      "rootPathSuffix": "src/app/"
+    }]
+  ]
+}
