@@ -37,7 +37,6 @@ class App extends React.Component {
 
   dampingChanged(props, currValue, frontOrRear) {
     let newState = {};
-    let calculated = this.calculateBumpStiff(currValue);
 
     if (frontOrRear.toLowerCase() == 'front') {
       newState = this.state.bump_front;
@@ -45,6 +44,7 @@ class App extends React.Component {
       newState = this.state.bump_rear;
     }
 
+    let calculated = this.calculateBumpStiff(currValue);
     newState.min = calculated[0];
     newState.max = calculated[1];
     this.setState(newState);
@@ -69,13 +69,20 @@ class App extends React.Component {
             </h2>
 
             <h3>
-              Front: (max - min) * FrontWeightDistribution% + min
+              Front: [(max - min) * FrontWeightDistribution%] + min
             </h3>
             <h3>
-              Rear: (max - min) * RearWeightDistribution% + min
+              Rear: [(max - min) * (100 - RearWeightDistribution%)] + min
             </h3>
+
+            <h4>
+              Based on <a href="https://www.youtube.com/watch?v=qKhrvG8v6TY">this</a> video.
+            </h4>
           </Col>
         </Row>
+
+        {/* WEIGHT */}
+
         <TunningEntry
           col1=""
           col2=""
@@ -91,14 +98,18 @@ class App extends React.Component {
         />
         <hr className="divider"></hr>
 
+        {/* REBOUND STIFFNESS */}
+
         <WeightTunning
           weight={this.state.weight}
-          headerText={["bump stiffness", "soft", "stiff"]}
+          headerText={["rebound stiffness", "soft", "stiff"]}
           minChangedListener={this.dampingChanged}
           maxChangedListener={this.dampingChanged}
         />
 
         <hr className="divider"></hr>
+
+        {/* BUMP STIFFNESS */}
 
         <TunningEntry
           col1="bump stiffness"
@@ -122,12 +133,14 @@ class App extends React.Component {
           className="dsc"
           dsc="Rear"
           entryMargin="2px"
-          min={this.state.bump_front.min}
-          max={this.state.bump_front.max}
+          min={this.state.bump_rear.min}
+          max={this.state.bump_rear.max}
           result={-1}
         />
 
         <hr className="divider"></hr>
+
+        {/* SPRINGS */}
 
         <WeightTunning
           weight={this.state.weight}
@@ -135,10 +148,20 @@ class App extends React.Component {
         />
 
         <hr className="divider"></hr>
+
+        {/* ANTI-ROLL BARS */}
+
         <WeightTunning
           weight={this.state.weight}
           headerText={["anti-roll bars", "soft", "stiff"]}
+          min={1}
+          max={65}
         />
+
+        <Row>
+          <Col style={{ height: "150px", }}>
+          </Col>
+        </Row>
 
       </Container>
     );

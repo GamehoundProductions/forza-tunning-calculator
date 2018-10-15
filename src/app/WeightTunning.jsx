@@ -11,8 +11,8 @@ class WeightTunning extends React.Component {
         super(props);
         this.state = {
             weight: 50,
-            min: 0,
-            max: 100
+            min: props.min,
+            max: props.max
         };
 
         this.maxChange = this.maxChange.bind(this)
@@ -38,8 +38,9 @@ class WeightTunning extends React.Component {
         if (this.isFunction(this.props.minChangedListener)) {
             this.props.minChangedListener(
                 this.props,
-                this.calculate(newState),
-                FrontOrRear);
+                this.calculate(newState, FrontOrRear),
+                FrontOrRear
+            );
         }
 
         this.setState(newState);
@@ -58,8 +59,9 @@ class WeightTunning extends React.Component {
         if (this.isFunction(this.props.maxChangedListener)) {
             this.props.maxChangedListener(
                 this.props,
-                this.calculate(newState),
-                FrontOrRear);
+                this.calculate(newState, FrontOrRear),
+                FrontOrRear
+            );
         }
 
         this.setState(newState);
@@ -74,14 +76,16 @@ class WeightTunning extends React.Component {
     }//setDependantField
 
 
-    calculate(state, isFront = true) {
+    calculate(state, FrontOrRear) {
         //This formula based of youtube video by HokiHoshi:
         //https://www.youtube.com/watch?v=qKhrvG8v6TY
         let weight = this.props.weight;
         let min = state.min;
         let max = state.max;
-        if (!isFront)
+
+        if (FrontOrRear.toLowerCase() == "rear")
             weight = 100 - weight; //rear distribution
+
         weight = weight / 100;
 
         let result = ((max - min) * weight) + min
@@ -105,12 +109,12 @@ class WeightTunning extends React.Component {
                     id={'front_' + this.props.headerText[0]}
                     className="dsc"
                     dsc="Front"
-                    onMinChange={(evnt) => this.minChange(evnt, "front")}
-                    onMaxChange={(evnt) => this.maxChange(evnt, "front")}
+                    onMinChange={(evnt) => { this.minChange(evnt, "front"); this.minChange(evnt, "rear"); }}
+                    onMaxChange={(evnt) => { this.maxChange(evnt, "front"); this.maxChange(evnt, "rear"); }}
 
                     min={this.state.min}
                     max={this.state.max}
-                    result={this.calculate(this.state)}
+                    result={this.calculate(this.state, 'front')}
                 />
 
                 <TunningEntry
@@ -121,12 +125,12 @@ class WeightTunning extends React.Component {
                     col3={'rear_' + this.props.headerText[2]}
                     className="dsc"
                     dsc="Rear"
-                    onMinChange={(evnt) => this.minChange(evnt, "rear")}
-                    onMaxChange={(evnt) => this.maxChange(evnt, "rear")}
+                    onMinChange={(evnt) => { this.minChange(evnt, "rear"); this.minChange(evnt, "front"); }}
+                    onMaxChange={(evnt) => { this.maxChange(evnt, "rear"); this.maxChange(evnt, "front"); }}
 
                     min={this.state.min}
                     max={this.state.max}
-                    result={this.calculate(this.state, false)}
+                    result={this.calculate(this.state, 'rear')}
                     entryMargin="2px"
                 />
 
@@ -139,7 +143,9 @@ WeightTunning.defaultProps = {
     headerText: ["TYPE", "MIN", "MAX"],
     marginTop: "0px",
     minChangedListener: NaN,
-    maxChangedListener: NaN
+    maxChangedListener: NaN,
+    min: 0,
+    max: 100
 }
 
 export default WeightTunning;
